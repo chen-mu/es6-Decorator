@@ -64,6 +64,6 @@ npx babel index.js --out-dir lib：将index.js文件中的代码转码写入lib/
 node ./lib/index.js  ：运行lib/index.js
  
 
-通过此方法就能在node环境中运行es6中的编辑器
+通过此方法就能在node环境中npm run start运行es6中的编辑器
 
 
