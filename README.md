@@ -1,3 +1,5 @@
+# 原本这个项目只用来做在node环境中使用es6里面的装饰器的demo，但因自己太菜来，将自己对于js的实现也放进了
+
 # es6-Decorator
 在node环境中的装饰器demo
 

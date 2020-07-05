@@ -7,7 +7,7 @@
  * es6class的写法
  * constructor（）中的this指向的是new的对象（实例）
  * 另外 对于constructor（）构造函数的理解，
- * constructor（）是一种用于创建和初始化class创建的对象的特殊方法。可以在原型链中理解object.constructor === function
+ * constructor（）是一种用于创建和初始化class创建的对象的特殊方法。可以在原型中理解object.constructor === function
  * 在该例子中hello.constructor === Hello(hello为Hello出来的一个对象)
  * 
  */
