@@ -55,6 +55,6 @@ function log(target, name, descriptor) {
     return descriptor;
 }
 const math = new Math();
-// II passed parameters sh uld get logged now
+
 math.add(2, 4);
 console.log(math.add(2,4))
