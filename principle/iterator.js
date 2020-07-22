@@ -15,9 +15,15 @@
 //     };
 // };
 
-let str = ['hello','world','hai'];
+let str = ['hello', 'world', 'hai'];
+
 let iter = str[Symbol.iterator]();
-for (let i of iter){
+console.log(iter)
+for (let i of str) {
+    console.log(i)
+}
+for (let i in str) {
+    // console.log()
     console.log(i)
 }
 // console.log(iter.next())
