@@ -1,22 +1,92 @@
-// const s = new Set();
-// [2, 3, 5, 4, 5, 2, 2].forEach(x => s.add(x));
-// for (let i of s) {
-//     console.log(i);
-// }
-
-
-// let arry = [{name:'yuan'},{age:'33'}]
-// delete arry[0] //使用delete 不会改变数组长度，会将删掉的那个元素设置用undefind的替代
-// console.log(arry)
-
-const timer = false && setTimeout(()=>{console.log(11111)},1000);
-
-
-const getOriginData = !isApp && setTimeout(() => {
-    this.requestChooseCityReaBookData({ cityId: '5448b9fa7996edbc1d249fbc' });//在非app环境下，先获取上海初始数据
-}, 1000);
-const appLocation = await getLocation('all');
-!isApp && clearTimeout(getOriginData);
+let wxTimer = function (initObj) {
+    initObj = initObj || {};
+    this.endTime = initObj.endTime || 0;	//开始时间
+    this.complete = initObj.complete;					//结束任务
+    this.interletID;									//计时ID
+};
 
 
 
+wxTimer.prototype = {
+
+    //开始
+    start: function (self) {
+        // let wxt_d = '00';
+        // let wxt_ah = '00';
+        // let wxt_h = '00';
+        // let wxt_m = '00';
+        // let wxt_s = '00';
+        // let wxt_mill = '00'
+        let that = this;
+        function begin() {
+            let tmpTime = countDown(that.endTime);
+            let { day, hours, allHours, minute, second, mill, leftTime } = tmpTime;
+            console.log(day, hours, allHours, minute, second, mill, leftTime)
+            // self.setData({
+            wxt_d = day;
+            wxt_ah = allHours;
+            wxt_h = hours;
+            wxt_m = minute;
+            wxt_s = second;
+            wxt_mill = mill
+            // });
+
+            //结束执行函数
+            if (leftTime <= 1000) {
+                // self.setData({
+                wxt_d = '00';
+                wxt_h = '00';
+                wxt_ah = '00';
+                wxt_m = '00';
+                wxt_s = '00';
+                wxt_mill = '00';
+                // });
+                if (that.complete) {
+                    that.complete();
+                }
+            } else {
+                setTimeout(begin, 500);
+            }
+        }
+        begin();
+    },
+};
+
+function countDown(endTime) {
+    let leftTime = +endTime - (new Date()).getTime(),
+        leftSecond = parseInt(leftTime / 1000),
+        day1 = Math.floor(leftSecond / (60 * 60 * 24)),
+        hour = Math.floor((leftSecond - day1 * 24 * 60 * 60) / 3600),
+        allHour = (day1 * 24) + hour,
+        minute = Math.floor((leftSecond - day1 * 24 * 60 * 60 - hour * 3600) / 60),
+        second = Math.floor(leftSecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60),
+        timeMillisecond = parseInt((leftTime / 100) % 9 + 1);
+    return {
+        leftTime: leftTime,
+        day: day1 < 10 && day1 > 0 ? '0' + day1 : day1 >= 10 ? day1 : '00',
+        allHours: allHour < 10 && allHour >= 0 ? '0' + allHour : allHour,
+        hours: hour < 10 && hour >= 0 ? '0' + hour : hour,
+        minute: minute < 10 && minute >= 0 ? '0' + minute : minute,
+        second: second < 10 && second >= 0 ? '0' + second : second,
+        mill: timeMillisecond
+    };
+};
+
+// module.exports = wxTimer;
+
+let wxt_d = '00';
+let wxt_h = '00';
+let wxt_ah = '00';
+let wxt_m = '00';
+let wxt_s = '00';
+let wxt_mill = '00';
+
+const time = new wxTimer({
+    endTime: '1595500237099',
+    complete: () => {
+        console.log('结束')
+    }
+});
+// console.log(time);
+time.start()
+console.log(wxt_d, wxt_h, wxt_ah, wxt_m, wxt_s, wxt_mill);
