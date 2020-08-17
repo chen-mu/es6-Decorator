@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: auto;
+            padding: 0;
+        }
+
+        .box {
+            margin-top: 150px;
+            margin-left: 150px;
+            color: red;
+            white-space: nowrap;
+            width: 200px;
+            background: rosybrown;
+            overflow: hidden;
+        }
+
+        .content p {
+            display: inline-block;
+        }
+
+        .content p.padding {
+            padding-right: 200px;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="content">
+            <p class="text">实现文字的跑马灯效果，超出</p>
+        </div>
+    </div>
+
+
+    <script>
+
+        let box = document.querySelector('.box');
+        let content = document.querySelector('.content');
+        let text = document.querySelector('.text');
+
+        //文本宽度
+        let textWidth = text.offsetWidth;
+        //盒子宽度
+        let boxWidth = text.offsetWidth;
+
+
+        window.onload = function () {
+            //比较文字与盒子长度的大小
+            if (boxWidth > textWidth) {
+                return false;
+            }
+            content.innerHTML += content.innerHTML;
+            document.querySelector('.text').classList.add('padding');
+            //刷新textwidth
+            textWidth = document.querySelector('.text').offsetWidth;
+            scroll_left();
+        }
+
+        function scroll_left() {
+            if (textWidth > boxWidth) {
+                //文字长度大于盒子长度，开始滚动
+                box.scrollLeft++;
+                setTimeout('scroll_left()', 1);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
