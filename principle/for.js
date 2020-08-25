@@ -6,3 +6,5 @@ for (let i of demo) {
     console.log(i)
 }
 //在for循环中；break和return都终止了整个循环，continue则终止当前循环进入下个循环
+//for...in 循环遍历的是键名
+//for...of 循环遍历的是键值
