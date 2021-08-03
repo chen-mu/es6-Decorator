@@ -1,4 +1,4 @@
-var shoeObj = {}; // 定义发布者
+const shoeObj = {}; // 定义发布者
 shoeObj.list = []; // 缓存列表 存放订阅者回调函数
 
 // 增加订阅者
@@ -13,14 +13,14 @@ shoeObj.listen = function (key, fn) {
 // 发布消息
 // arguments 是一个类数组对象
 shoeObj.trigger = function () {
-    var key = Array.prototype.shift.call(arguments); // 取出消息类型名称
-    var fns = this.list[key];  // 取出该消息对应的回调函数的集合
+    const key = Array.prototype.shift.call(arguments); // 取出消息类型名称
+    const fns = this.list[key];  // 取出该消息对应的回调函数的集合
 
     // 如果没有订阅过该消息的话，则返回
     if (!fns || fns.length === 0) {
         return;
     }
-    for (var i = 0, fn; fn = fns[i++];) {
+    for (let i = 0, fn; fn = fns[i++];) {
         fn.apply(this, arguments); // arguments 是发布消息时附送的参数
     }
 };
