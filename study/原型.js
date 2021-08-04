@@ -1,14 +1,14 @@
 //题目一：F、f是否有a方法和b方法
-let F = function () { }
-Object.prototype.a = () => { console.log('a'); }
-Function.prototype.b = () => { console.log('b'); }
+// let F = function () { }
+// Object.prototype.a = () => { console.log('a'); }
+// Function.prototype.b = () => { console.log('b'); }
 
-let f = new F()
-console.log(f);
-F.a()
-F.b()
+// let f = new F()
+// console.log(f);
+// F.a()
+// F.b()
 
-f.a()
+// f.a()
 // f.b()
 
 /**
@@ -25,3 +25,13 @@ f.a()
  * 3:将步骤1新创建的对象作为this的上下文 ；
  * 4:如果该函数没有返回对象，则返回this。
  */
+
+
+function Person(name, age) {
+    this.name = name;
+    this.age = age
+}
+
+const person = new Person('小明', '18')
+
+console.log(person);
