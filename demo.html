@@ -1,62 +1,57 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <style>
-        div {
-            width: 100%;
-            text-align: center;
-            font-size: 30px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>事件冒泡</title>
 </head>
-<div id="go">
-</div>
 
 <body>
-    <script>
-        function countTime(time, id) {
-            var date = new Date();
-            var now = date.getTime();
-            var endDate = new Date(time);//设置截止时间
-            var end = endDate.getTime();
-            var leftTime = end - now; //时间差                              
-            var d, h, m, s, ms;
-            if (leftTime >= 0) {
-                d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
-                h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
-                m = Math.floor(leftTime / 1000 / 60 % 60);
-                s = Math.floor(leftTime / 1000 % 60);
-                ms = Math.floor(leftTime % 100);
-                if (ms < 10) {
-                    ms = "0" + ms;
-                }
-                if (s < 10) {
-                    s = "0" + s;
-                }
-                if (m < 10) {
-                    m = "0" + m;
-                }
-                if (h < 10) {
-                    h = "0" + h;
-                }
-                //将倒计时赋值到div中
-                document.getElementById(id).innerHTML = d + "天" + h + "时" + m + "分" + s + "秒" + ms + "毫秒";
-            } else {
-                console.log('已截止')
-                //将倒计时赋值到div中
-                document.getElementById(id).innerHTML = "已开抢"
-            }
-            //递归每秒调用countTime方法，显示动态时间效果
-            return leftTime
-        }
-        //调用方式  需要传入  结束时间   和 倒计时内容所在的id名称
-        var s = setInterval(function () {
-            var dates = countTime("2020-7-22 22:22:00", "go");
-            if (dates <= 0) {
-                clearInterval(s)
-            }
-        }, 50)
-    </script>
+  <div>
+    <div id="parEle">我是父元素 
+      <div id="sonEle">&nbsp;&nbsp;我是子元素</div>&nbsp;&nbsp;
+      <input id='input' class="" value="" type="text" password="false"  placeholder-style="" placeholder-class="input-placeholder"
+        maxlength="140" focus="false" bindinput="" bindfocus="" bindblur="" bindconfirm="">
+      </input>
+        
+    </div>
+  </div>
 </body>
 
 </html>
+<script type="text/javascript">
+  var sonEle = document.getElementById('sonEle');
+  var parEle = document.getElementById('parEle');
+  var inputEle = document.getElementById('input');
+
+  parEle.addEventListener('touchstart', function (e) {
+    // e.stopPropagation()
+    console.log('父级 捕获');
+  }, true);
+
+  sonEle.addEventListener('mousedown', function () {
+    console.log('子级  捕获');
+  }, true);
+
+  parEle.addEventListener('mousedown', function () {
+    console.log('父级 冒泡');
+  }, false);
+
+  sonEle.addEventListener('mousedown', function () {
+    console.log('子级  冒泡');
+  }, false);
+
+  //  sonEle.addEventListener('mousedown', function () {
+  //   console.log('点击事件');
+  // },false);
+
+  // sonEle.addEventListener('mousedown',()=>{
+  //   console.log('鼠标事件');
+  // },true)
+
+  // inputEle.addEventListener('blur', function(){
+  //   // sonEle.parentNode.remove()
+  //   console.log('失去焦点');
+  // },true)
+
+</script>

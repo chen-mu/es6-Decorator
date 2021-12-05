@@ -3,6 +3,8 @@
 function add() {
 	const _args = Array.from(arguments)
 
+	// console.log('_args==>', _args);
+
 	// 将函数参数保存起来
 	function _adder() {
 		_args.push(...arguments)
@@ -10,7 +12,7 @@ function add() {
 	}
 	// 实现函数的功能
 	_adder.demo = function () {
-		console.log(_args)
+		console.log('_args===>', _args)
 		return _args.reduce((ac, cu) => {
 			return ac + cu
 		}, 0)
