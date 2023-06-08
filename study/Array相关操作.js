@@ -1,7 +1,6 @@
 const array = ['value1', 'value2', 'value3', 'value4', 'value5', 'value6', 'value7', 'value8']
 console.log(1111);
 array.entries();
-// console.log(array.keys())
 
 /**
  * entries()，keys，values。它们都返回一个遍历器对象，可用for ... of循环遍历，
