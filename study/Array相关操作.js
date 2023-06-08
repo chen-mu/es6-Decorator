@@ -8,6 +8,7 @@ array.entries();
  *  */
 
 
+
 // for...of  遍历的是value
 // for...in  遍历的是索引值
 let arr = ['w', 'b'];
